@@ -1,4 +1,4 @@
-class DrawableObject {
+class DrawableObject{
     img;
     imageCache = {};
     currentImage = 0;
@@ -13,7 +13,7 @@ class DrawableObject {
     }
 
     drawRect(ctx) {
-        if (this instanceof Character || this instanceof Chicken) {
+        if (this instanceof Character || this instanceof Chicken || this instanceof ThrowableObject) {
             ctx.beginPath();
             ctx.lineWidth = "1";
             ctx.strokeStyle = "red";
@@ -22,15 +22,18 @@ class DrawableObject {
         }
     }
 
-    draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-    }
-
     loadImages(arr) {
         arr.forEach((path) => {
             let img = new Image();
             img.src = path;
             this.imageCache[path] = img; // path is chosen as key to prevent overwriting
+            console.log(this.imageCache)
         });
     }
+
+    draw(ctx) {
+        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+    }
+
+
 }

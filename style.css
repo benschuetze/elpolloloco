@@ -2,8 +2,173 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-family: 'Bangers', cursive;
+    letter-spacing: 2px;
+    background-image: url(/img/bg/background.jpg);
+    background-size: cover;
+    background-repeat:no-repeat;
+    background-color: #7E2818;
+    color: #F4DC00;
+    overflow-y: hidden;
+}
+
+h1, h2 {
+    font-weight: 500;
+}
+
+img {
+    z-index: 1000;
+    height: 2em;
 }
 
 canvas {
+    margin-top: 20px;
     background-color: black;
+    display: block;
+    border-radius: 6px;
+}
+
+#restart {
+    background-color: #4CAF50; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-family: 'Bangers', cursive;
+    font-size: 16px;
+    border-radius: 4px;
+    letter-spacing: 3px;
+    cursor: pointer;
+}
+
+#restart:hover {
+    background-color: grey;
+}
+
+.opacity-0 {
+    opacity: 0;
+}
+
+.pulsate {
+    -webkit-animation: pulsate 1s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    opacity: 0.5;
+}
+
+@-webkit-keyframes pulsate {
+    0% { 
+        opacity: 0.5;
+    }
+    50% { 
+        opacity: 1.0;
+    }
+    100% { 
+        opacity: 0.5;
+    }
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+    align-items: center;
+    margin-top: -95px;
+}
+
+.actions{
+    display: flex;
+    align-items: center,
+}
+
+.actions div {
+    display: grid;
+    align-items: center;
+}
+
+.actions div img {
+    margin-top: 8px;
+}
+
+.buy {
+    align-self:center;
+    margin-right: 16px;
+}
+
+.jump {
+    height: 2.5em !important;
+    align-self: center;
+    margin-right: 24px;
+    margin-left: 8px;
+}
+
+/* Smartphones ------------------*/
+
+@media only screen and (max-width: 720px) {
+    canvas {
+        width: 100%;
+    }
+}
+
+/* Smartphones ------------------*/
+
+@media only screen and (max-height: 480px) {
+    canvas {
+        height: 100vh;
+    }
+}
+
+p {
+    margin: 0 auto;
+    text-align: center;
+    font-family: 'Bangers', cursive;
+    font-size: 1.5em;
+}
+
+.flex {
+    display: flex;
+}
+
+.infos {
+    display: flex;
+}
+
+
+
+.explanation-box {
+    margin-top: 30px;
+    margin-right: 24px;
+    margin-left: 24px;
+    display: grid;
+    align-content: center;
+    text-align: center;
+}
+
+.mobile {
+    opacity: 0;
+}
+
+@media only screen and (max-width: 370px) {
+    canvas {
+        display: none;
+    }
+
+    .infos {
+        display: none;
+    }
+
+    .mobile {
+        opacity: 1 !important;
+        margin-top: 250px;
+        margin-bottom: 100%;
+    }
+
+    .pulsate {
+        display: none;
+    }
+
+    body {
+        height: 100%;
+    }
 }

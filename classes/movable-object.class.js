@@ -1,6 +1,6 @@
 class MovableObject extends DrawableObject {
     
-    speed = 0.04;
+    speed = 0.3;
     otherDirection = false;
     speedY = 0; // the speed in which the object is falling
     acceleration = 0.14; // the acceleration per a given interval
@@ -18,7 +18,17 @@ class MovableObject extends DrawableObject {
     }
 
     isAboveGround() {
+        if(this instanceof ThrowableObject) { // to let the bottle fall through
+            return true;
+        } else {
         return this.y < 138;
+        }
+    }
+
+    isEndBoss() {
+        if(this instanceof Endboss) {
+            return true
+        }
     }
 
     isColliding(mo) {
@@ -29,18 +39,17 @@ class MovableObject extends DrawableObject {
     }
 
     hit() {
-        if (this.health > 0) {
+        if (this.health > 0 && this instanceof Character) {
             this.health--;
-            this.lastHit = new Date().getTime(); //time since a fixed date in the past in digit format
+            this.lastHit = new Date().getTime(); //time since a fixed date in the past in digits
         }
     }
 
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit; // time gets requested again 
         timepassed = timepassed / 1000;                       // and the time that was requested 
-        return timepassed < 1;                                // before gets subtracted from the new one
-                                                              // we get the difference in ms
-    }                                                         // the function returns 'true' when timepassed < 5
+        return timepassed < 1;                                // before gets subtracted from the new one                                                          // we get the difference in ms
+    }                                                         // the function returns 'true' when timepassed < 1
 
     isDead() {
         return this.health == 0;
@@ -74,6 +83,20 @@ class MovableObject extends DrawableObject {
     }
 
     jump() {
-        this.speedY = 7;
+        this.speedY = 8;
     }
+
+    enemyMove() {
+        if (!this.isDead()) {
+            if(this.x > this.character.x) {
+            this.moveLeft();
+            this.otherDirection = false;
+            } 
+            if(this.x - this.character.x < -0) {
+                    this.moveRight(); 
+                    this.otherDirection = true;
+
+            }
+        }
+    };
 }
